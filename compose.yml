@@ -1,0 +1,15 @@
+services:
+    mongodb:
+        image: mongo
+
+    service-auth:
+        build:
+            context: ./services/auth-service
+            dockerfile: Dockerfile
+        ports:
+            - "3001:3001"
+        environment:
+                MONGODB_URI: ${MONGODB_URI}
+        # A voir si env_file est mieux
+        healthcheck:
+            test: ["CMD", "npm", "run", "test"]
