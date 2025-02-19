@@ -2,7 +2,7 @@ services:
     mongodb:
         image: mongo
 
-    service-auth:
+    auth-service:
         build:
             context: ./services/auth-service
             dockerfile: Dockerfile
