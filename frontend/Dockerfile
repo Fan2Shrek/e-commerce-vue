@@ -30,4 +30,3 @@ COPY --from=builder /app/dist /app/dist
 RUN npm ci --omit=dev
 
 CMD ["npm", "run", "start"]
-

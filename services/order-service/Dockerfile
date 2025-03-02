@@ -1,4 +1,4 @@
-# Auth Dockerfile
+# Product Dockerfile
 
 ARG NODE_VERSION=18
 

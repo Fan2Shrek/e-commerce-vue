@@ -10,7 +10,27 @@ services:
         ports:
             - "3001:3001" # remove
         environment:
-                MONGODB_URI: ${MONGODB_URI}
+            MONGODB_URI: ${MONGODB_URI}
+
+    product-service:
+        build:
+            context: ./services/product-service
+            dockerfile: Dockerfile
+            target: main
+        ports:
+            - "3000:3000"
+        environment:
+            MONGODB_URI: ${MONGODB_URI}
+
+    order-service:
+        build:
+            context: ./services/order-service
+            dockerfile: Dockerfile
+            target: main
+        ports:
+            - "3000:3000"
+        environment:
+            MONGODB_URI: ${MONGODB_URI}
 
     frontend:
         build:
@@ -18,6 +38,6 @@ services:
             dockerfile: Dockerfile
             target: prod
         ports:
-            - "3000:8080"
+            - "8000:8080"
         env_file:
             - .env
