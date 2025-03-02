@@ -3,6 +3,7 @@ services:
         image: mongo
 
     auth-service:
+        platform: linux/amd64
         build:
             context: ./services/auth-service
             dockerfile: Dockerfile
@@ -21,6 +22,7 @@ services:
             start_period: 30s
 
     product-service:
+        platform: linux/amd64
         build:
             context: ./services/product-service
             dockerfile: Dockerfile
