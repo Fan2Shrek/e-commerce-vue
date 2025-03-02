@@ -1,0 +1,52 @@
+name: Run Tests on PR
+
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+                  cache: "npm"
+
+            - name: Test Auth Service
+              working-directory: ./services/auth-service
+              run: |
+                  npm install
+                  npm test
+
+            - name: Test Product Service
+              working-directory: ./services/product-service
+              run: |
+                  npm install
+                  npm install --save-dev mongodb-memory-server @babel/core @babel/preset-env cross-env
+                  NODE_ENV=test NODE_OPTIONS='--experimental-vm-modules' npm test
+
+            - name: Test Order Service
+              working-directory: ./services/order-service
+              run: |
+                  npm install
+                  npm test
+
+            - name: Test Frontend
+              working-directory: ./frontend
+              run: |
+                  npm install
+                  npm run test:unit
+
+            # Optional: Run the comprehensive test script if you prefer
+            - name: Run All Tests (Alternative)
+              if: false # Set to true if you prefer using the script instead of individual steps
+              run: |
+                  chmod +x ./scripts/run-tests.sh
+                  ./scripts/run-tests.sh
