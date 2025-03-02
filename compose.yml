@@ -6,6 +6,7 @@ services:
         build:
             context: ./services/auth-service
             dockerfile: Dockerfile
+            target: main
         ports:
             - "3001:3001"
         environment:
@@ -18,5 +19,6 @@ services:
         build:
             context: frontend
             dockerfile: Dockerfile
+            target: main
         ports:
             - "3000:8080"
