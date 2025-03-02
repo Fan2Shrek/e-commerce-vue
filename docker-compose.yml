@@ -14,7 +14,11 @@ services:
             JWT_SECRET: ${JWT_SECRET}
         # A voir si env_file est mieux
         healthcheck:
-            test: ["CMD", "npm", "run", "test"]
+            test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
 
     product-service:
         build:
@@ -26,7 +30,11 @@ services:
         environment:
             MONGODB_URI: ${MONGODB_URI}
         healthcheck:
-            test: ["CMD", "npm", "run", "test"]
+            test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
 
     order-service:
         build:
@@ -39,7 +47,11 @@ services:
             MONGODB_URI: ${MONGODB_URI}
             JWT_SECRET: ${JWT_SECRET}
         healthcheck:
-            test: ["CMD", "npm", "run", "test"]
+            test: ["CMD", "curl", "-f", "http://localhost:3002/api/health"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
 
     frontend:
         build:
