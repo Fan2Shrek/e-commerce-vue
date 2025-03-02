@@ -1,10 +1,18 @@
 DOCKER = $(shell which docker)
 
-COMPOSE_FILE ?= compose.yml
-COMPOSE_UP = $(DOCKER) compose -f $(COMPOSE_FILE) up -d
+COMPOSE?=$(DOCKER) compose -f compose.yml
+COMPOSE_PROD=$(COMPOSE) -f compose.prod.yml
 
 up:
-	@$(COMPOSE_UP)
+	$(COMPOSE) build --force-rm
+	$(COMPOSE) up -d
+	sh ./scripts/init-products.sh
 
 up-prod:
-	@$(MAKE) up COMPOSE_FILE=compose-prod.yml
+	$(COMPOSE_PROD) up -d
+
+down:
+	$(COMPOSE) down
+
+down-prod:
+	$(COMPOSE_PROD) down

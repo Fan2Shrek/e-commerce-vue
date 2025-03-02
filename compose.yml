@@ -10,8 +10,32 @@ services:
         ports:
             - "3001:3001"
         environment:
-                MONGODB_URI: ${MONGODB_URI}
+            MONGODB_URI: ${MONGODB_URI}
         # A voir si env_file est mieux
+        healthcheck:
+            test: ["CMD", "npm", "run", "test"]
+
+    product-service:
+        build:
+            context: ./services/product-service
+            dockerfile: Dockerfile
+            target: main
+        ports:
+            - "3000:3000"
+        environment:
+            MONGODB_URI: ${MONGODB_URI}
+        healthcheck:
+            test: ["CMD", "npm", "run", "test"]
+
+    order-service:
+        build:
+            context: ./services/order-service
+            dockerfile: Dockerfile
+            target: main
+        ports:
+            - "3002:3002"
+        environment:
+            MONGODB_URI: ${MONGODB_URI}
         healthcheck:
             test: ["CMD", "npm", "run", "test"]
 
@@ -21,4 +45,4 @@ services:
             dockerfile: Dockerfile
             target: main
         ports:
-            - "3000:8080"
+            - "8000:8080"
