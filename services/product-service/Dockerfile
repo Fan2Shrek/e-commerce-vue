@@ -2,7 +2,7 @@
 
 ARG NODE_VERSION=18
 
-FROM node:${NODE_VERSION}-slim AS main
+FROM node:${NODE_VERSION}-bullseye AS main
 
 WORKDIR /app
 
