@@ -1,7 +1,7 @@
 DOCKER = $(shell which docker)
 
-COMPOSE?=$(DOCKER) compose -f compose.yml
-COMPOSE_PROD=$(COMPOSE) -f compose.prod.yml
+COMPOSE?=$(DOCKER) compose -f docker-compose.yml
+COMPOSE_PROD=$(COMPOSE) -f docker-compose.prod.yml
 
 up:
 	$(COMPOSE) build --force-rm
