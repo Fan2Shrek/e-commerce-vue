@@ -31,7 +31,7 @@ jobs:
                   file: ./services/auth-service/Dockerfile
                   platforms: linux/amd64
                   push: true
-                  tags: registry.nassimlounadi.fr/${{ github.repository_owner }}/auth-service:latest
+                  tags: registry.nassimlounadi.fr/fortnite/auth-service:latest
                   target: prod
 
             # Build and push Product Service
@@ -41,7 +41,7 @@ jobs:
                   context: ./services/product-service
                   file: ./services/product-service/Dockerfile
                   push: true
-                  tags: registry.nassimlounadi.fr/${{ github.repository_owner }}/product-service:latest
+                  tags: registry.nassimlounadi.fr/fortnite/product-service:latest
                   target: main
 
             # Build and push Order Service
@@ -51,7 +51,7 @@ jobs:
                   context: ./services/order-service
                   file: ./services/order-service/Dockerfile
                   push: true
-                  tags: registry.nassimlounadi.fr/${{ github.repository_owner }}/order-service:latest
+                  tags: registry.nassimlounadi.fr/fortnite/order-service:latest
                   target: main
 
             # Build and push Frontend
@@ -61,5 +61,5 @@ jobs:
                   context: ./frontend
                   file: ./frontend/Dockerfile
                   push: true
-                  tags: registry.nassimlounadi.fr/${{ github.repository_owner }}/frontend:latest
+                  tags: registry.nassimlounadi.fr/fortnite/frontend:latest
                   target: prod
